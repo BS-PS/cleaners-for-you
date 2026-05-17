@@ -7,17 +7,17 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses = {
-  primary: 'bg-[#1E3A8A] text-white hover:bg-blue-900 active:bg-blue-950',
-  secondary: 'bg-[#16A34A] text-white hover:bg-green-700',
-  outline: 'border border-[#1E3A8A] text-[#1E3A8A] bg-white hover:bg-blue-50',
-  ghost: 'text-gray-600 hover:bg-gray-100',
-  danger: 'bg-red-600 text-white hover:bg-red-700',
+  primary: 'bg-navy text-white hover:bg-navy-dark active:bg-navy-dark',
+  secondary: 'bg-cgreen text-white hover:bg-cgreen-dark',
+  outline: 'border border-navy text-navy bg-white hover:bg-navy-light',
+  ghost: 'text-cmuted hover:bg-cbg',
+  danger: 'bg-cred text-white hover:opacity-90',
 };
 
 const sizeClasses = {
-  sm: 'px-3 py-1.5 text-sm rounded-lg',
-  md: 'px-4 py-2.5 text-sm rounded-xl',
-  lg: 'px-6 py-3 text-base rounded-xl',
+  sm: 'px-3 py-1.5 text-xs rounded-btn',
+  md: 'px-4 py-2.5 text-sm rounded-btn',
+  lg: 'px-6 py-3 text-sm rounded-btn',
 };
 
 export function Button({ variant = 'primary', size = 'md', className, children, ...props }: ButtonProps) {

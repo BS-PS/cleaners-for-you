@@ -9,7 +9,7 @@ export function Stars({ rating, size = 14 }: { rating: number; size?: number }) 
         <Star
           key={i}
           size={size}
-          className={v === 1 ? 'fill-amber-400 text-amber-400' : v === 0.5 ? 'fill-amber-200 text-amber-400' : 'text-gray-300'}
+          className={v === 1 ? 'fill-camber text-camber' : v === 0.5 ? 'fill-amber-200 text-camber' : 'text-cborder fill-cborder'}
         />
       ))}
     </span>

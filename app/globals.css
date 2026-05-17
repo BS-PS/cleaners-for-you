@@ -2,11 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  box-sizing: border-box;
+:root {
+  --navy: #1B3A6B;
+  --navy-dark: #142d54;
+  --navy-light: #EBF0FB;
+  --cgreen: #2E7D32;
+  --cgreen-light: #E8F5E9;
+  --camber: #F59E0B;
+  --cred: #D32F2F;
+  --cblue: #2D5BE3;
+  --cbg: #F4F6F9;
+  --ctext: #1A1A2E;
+  --cmuted: #6B7280;
+  --cborder: #E5E7EB;
 }
+
+* { box-sizing: border-box; }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #F8FAFC;
+  background: #F4F6F9;
+  color: #1A1A2E;
 }
+
+/* Hide scrollbar but keep scroll */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

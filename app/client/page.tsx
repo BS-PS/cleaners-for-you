@@ -1,67 +1,68 @@
 import Link from 'next/link';
-import { Bell, MapPin, ChevronRight, Star, Shield, Clock, Sparkles } from 'lucide-react';
+import { Bell, MapPin, ChevronRight, Shield, Clock, Sparkles } from 'lucide-react';
 import { clients } from '@/lib/fixtures/clients';
 import { services } from '@/lib/fixtures/services';
 import { cleaners } from '@/lib/fixtures/cleaners';
 import { formatCurrency } from '@/lib/utils';
 import { Stars } from '@/components/ui/stars';
 
-const client = clients[0]; // Emily Johnson
+const client = clients[0];
 const featured = cleaners.filter((c) => c.availabilityToday).slice(0, 3);
 
 const serviceIcons: Record<string, React.ReactNode> = {
-  Sparkles: <Sparkles size={22} className="text-[#1E3A8A]" />,
-  ShieldCheck: <Shield size={22} className="text-[#1E3A8A]" />,
-  KeyRound: <span className="text-lg">🔑</span>,
-  Building2: <span className="text-lg">🏢</span>,
+  Sparkles:   <Sparkles size={22} className="text-navy" />,
+  ShieldCheck: <Shield size={22} className="text-navy" />,
+  KeyRound:   <span className="text-xl">🔑</span>,
+  Building2:  <span className="text-xl">🏢</span>,
 };
 
 export default function ClientHome() {
   return (
-    <div className="bg-gray-50">
+    <div className="bg-cbg">
       {/* Header */}
-      <div className="bg-[#1E3A8A] px-5 pt-3 pb-6">
+      <div className="bg-navy px-5 pt-4 pb-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="text-blue-200 text-xs">Good morning,</p>
-            <h1 className="text-white font-bold text-lg">{client.fullName} 👋</h1>
+            <p className="text-navy-light text-xs">Good morning,</p>
+            <h1 className="text-white font-bold text-lg">Hello, {client.fullName.split(' ')[0]} 👋</h1>
           </div>
           <div className="relative">
             <Bell size={22} className="text-white" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-white text-[10px] flex items-center justify-center">2</span>
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-cred rounded-full text-white text-[10px] flex items-center justify-center font-bold">2</span>
           </div>
         </div>
         <div className="flex items-center gap-2 bg-white/10 rounded-xl px-3 py-2">
-          <MapPin size={14} className="text-blue-200" />
-          <span className="text-white text-sm">{client.addresses[0].line1}, {client.addresses[0].postcode}</span>
+          <MapPin size={14} className="text-navy-light" />
+          <span className="text-white text-xs">{client.addresses[0].line1}, {client.addresses[0].postcode}</span>
         </div>
       </div>
 
-      {/* What service? */}
-      <div className="px-4 -mt-3">
-        <div className="bg-white rounded-2xl shadow-sm p-4 mb-4">
-          <h2 className="font-bold text-gray-800 mb-3">What service do you need?</h2>
-          <div className="grid grid-cols-2 gap-3">
+      {/* Services */}
+      <div className="px-4 -mt-3 space-y-4">
+        <div className="bg-white rounded-card shadow-card p-4">
+          <h2 className="font-bold text-ctext mb-3 text-sm">What service do you need?</h2>
+          <div className="grid grid-cols-2 gap-2">
             {services.map((s) => (
               <Link key={s.id} href={`/client/book?service=${s.id}`}
-                className="flex flex-col items-center bg-blue-50 rounded-xl p-3 gap-1 hover:bg-blue-100 transition-colors">
+                className="flex flex-col items-center bg-navy-light rounded-xl p-3 gap-1 hover:bg-blue-100 transition-colors">
                 {serviceIcons[s.iconKey]}
-                <span className="text-xs font-semibold text-gray-700 text-center">{s.displayName}</span>
-                <span className="text-xs text-[#1E3A8A] font-bold">from {formatCurrency(s.basePrice)}/hr</span>
+                <span className="text-xs font-semibold text-ctext text-center">{s.displayName}</span>
+                <span className="text-xs text-navy font-bold">from {formatCurrency(s.basePrice)}/hr</span>
               </Link>
             ))}
           </div>
         </div>
 
-        {/* Popular Services quick pills */}
-        <div className="mb-4">
+        {/* Popular pills */}
+        <div>
           <div className="flex items-center justify-between mb-2">
-            <h2 className="font-bold text-gray-800">Popular Services</h2>
-            <Link href="/client/book" className="text-xs text-[#1E3A8A] font-semibold">View all</Link>
+            <h2 className="font-bold text-ctext text-sm">Popular Services</h2>
+            <Link href="/client/book" className="text-xs text-cblue font-semibold">View all</Link>
           </div>
-          <div className="flex gap-2 overflow-x-auto pb-1">
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
             {['Regular Clean', 'Deep Clean', 'End of Tenancy', 'Office'].map((label) => (
-              <Link key={label} href="/client/book" className="shrink-0 bg-white border border-gray-200 rounded-full px-3 py-1.5 text-xs font-medium text-gray-700 hover:border-[#1E3A8A] hover:text-[#1E3A8A] transition-colors">
+              <Link key={label} href="/client/book"
+                className="shrink-0 bg-white border border-cborder rounded-full px-3 py-1.5 text-xs font-medium text-ctext hover:border-navy hover:text-navy transition-colors">
                 {label}
               </Link>
             ))}
@@ -69,34 +70,34 @@ export default function ClientHome() {
         </div>
 
         {/* Featured Cleaners */}
-        <div className="mb-4">
+        <div>
           <div className="flex items-center justify-between mb-2">
-            <h2 className="font-bold text-gray-800">Featured Cleaners</h2>
-            <Link href="/client/book" className="text-xs text-[#1E3A8A] font-semibold">View all</Link>
+            <h2 className="font-bold text-ctext text-sm">Featured Cleaners</h2>
+            <Link href="/client/book" className="text-xs text-cblue font-semibold">View all</Link>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-2">
             {featured.map((cleaner) => (
               <Link key={cleaner.id} href={`/client/cleaner/${cleaner.id}`}
-                className="flex items-center gap-3 bg-white rounded-xl p-3 shadow-sm hover:shadow transition-shadow">
+                className="flex items-center gap-3 bg-white rounded-card p-3 shadow-card hover:shadow transition-shadow">
                 <img src={cleaner.avatarUrl} alt={cleaner.fullName} className="w-12 h-12 rounded-full object-cover" />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-gray-900 text-sm">{cleaner.fullName}</span>
-                    {cleaner.dbsChecked && <Shield size={12} className="text-[#16A34A]" />}
+                    <span className="font-semibold text-ctext text-sm">{cleaner.fullName}</span>
+                    {cleaner.dbsChecked && <Shield size={12} className="text-cgreen" />}
                   </div>
                   <div className="flex items-center gap-1 mt-0.5">
                     <Stars rating={cleaner.rating} size={11} />
-                    <span className="text-xs text-gray-500">{cleaner.rating} ({cleaner.reviewCount})</span>
+                    <span className="text-xs text-cmuted">{cleaner.rating} ({cleaner.reviewCount})</span>
                   </div>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs text-[#1E3A8A] font-bold">{formatCurrency(cleaner.hourlyRate)}/hr</span>
-                    <span className="text-xs text-gray-400">· {cleaner.location}</span>
-                    <span className="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+                    <span className="text-xs text-navy font-bold">{formatCurrency(cleaner.hourlyRate)}/hr</span>
+                    <span className="text-xs text-cmuted">· {cleaner.location}</span>
+                    <span className="text-[10px] bg-cgreen-light text-cgreen px-1.5 py-0.5 rounded-full flex items-center gap-0.5 font-medium">
                       <Clock size={9} />Available
                     </span>
                   </div>
                 </div>
-                <ChevronRight size={16} className="text-gray-400 shrink-0" />
+                <ChevronRight size={16} className="text-cborder shrink-0" />
               </Link>
             ))}
           </div>
@@ -109,9 +110,9 @@ export default function ClientHome() {
             { icon: '🔒', label: 'Fully Insured' },
             { icon: '✅', label: 'Verified' },
           ].map((b) => (
-            <div key={b.label} className="bg-white rounded-xl p-2 flex flex-col items-center gap-1 shadow-sm">
-              <span className="text-lg">{b.icon}</span>
-              <span className="text-[10px] font-semibold text-gray-600 text-center">{b.label}</span>
+            <div key={b.label} className="bg-white rounded-card p-3 flex flex-col items-center gap-1 shadow-card">
+              <span className="text-xl">{b.icon}</span>
+              <span className="text-[10px] font-semibold text-cmuted text-center">{b.label}</span>
             </div>
           ))}
         </div>
